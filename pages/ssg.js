@@ -5,7 +5,7 @@ const url = 'https://pokeapi.co/api/v2/pokemon?limit=143';
 const headers = {
   'Cache-Control': 'no-cache',
 };
-const StaticSide = () => {
+const StaticSide = (props) => {
   return props.pokemon.map((poke) => {
     return (
       <div key={poke.name}>
