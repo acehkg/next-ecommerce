@@ -1,4 +1,5 @@
 ---
+id: 1
 name: TUS Bottle Opener
 description: A handy bottle opener
 price: 500

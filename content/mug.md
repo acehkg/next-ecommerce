@@ -1,4 +1,5 @@
 ---
+id: 4
 name: TUS mug
 description: A beer mug for frosty drinks!
 price: 1500

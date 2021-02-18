@@ -1,4 +1,5 @@
 ---
+id: 3
 name: TUS Hat
 description: A cool baseball cap
 price: 2500

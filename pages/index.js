@@ -3,6 +3,7 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import styled from 'styled-components';
 import UnstyledLink from '../components/styled/UnstyledLink';
+import useCart from '../hooks/useCart';
 
 const Container = styled.div`
   position: relative;
@@ -30,13 +31,18 @@ const Price = styled.div`
   font-size: 2rem;
 `;
 
-const renderProducts = (product) => {
+const renderProducts = (product, addItemToCart) => {
+  const handleClick = (e) => {
+    e.stopPropagation();
+    addItemToCart(product.id);
+  };
   return (
-    <Link href={product.slug}>
+    <Link key={product.id} href={product.slug}>
       <UnstyledLink>
-        <Container key={product.name}>
+        <Container>
           <h1>{product.name}</h1>
           <p>{product.description}</p>
+          <button onClick={handleClick}>Add Item to Cart</button>
           <Price>${product.price / 100}</Price>
         </Container>
       </UnstyledLink>
@@ -45,8 +51,12 @@ const renderProducts = (product) => {
 };
 
 const HomePage = (props) => {
+  const { cart, addItemToCart } = useCart();
+  console.log(cart);
   return (
-    <ProductsContainer>{props.products.map(renderProducts)}</ProductsContainer>
+    <ProductsContainer>
+      {props.products.map((product) => renderProducts(product, addItemToCart))}
+    </ProductsContainer>
   );
 };
 
