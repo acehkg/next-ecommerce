@@ -1,16 +1,39 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import marked from 'marked';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  background: white;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+`;
+
+const Title = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Price = styled.span`
+  font-size: 2rem;
+  background: lightslategrey;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: white;
+`;
 
 const Product = ({ product: { data, content } }) => {
   const html = marked(content);
   return (
-    <div>
-      <h1>{data.name}</h1>
-      <p>{data.description}</p>
-      <p>${data.price / 100}</p>
+    <Container>
+      <Title>
+        <h1>{data.name}</h1>
+        <p>{data.description}</p>
+      </Title>
+      <Price>${data.price / 100}</Price>
       <div dangerouslySetInnerHTML={{ __html: html }} />
-    </div>
+    </Container>
   );
 };
 
