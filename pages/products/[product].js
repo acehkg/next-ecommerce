@@ -2,12 +2,7 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import marked from 'marked';
 import styled from 'styled-components';
-
-const Container = styled.div`
-  background: white;
-  padding: 1rem 2rem;
-  margin: 1rem 0;
-`;
+import { Container } from '../../components/styled/Page';
 
 const Title = styled.div`
   display: flex;

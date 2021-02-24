@@ -34,7 +34,7 @@ const Price = styled.div`
 const renderProducts = (product, addItemToCart) => {
   const handleClick = (e) => {
     e.stopPropagation();
-    addItemToCart(product.id);
+    addItemToCart(product);
   };
   return (
     <Link key={product.id} href={product.slug}>
@@ -52,7 +52,6 @@ const renderProducts = (product, addItemToCart) => {
 
 const HomePage = (props) => {
   const { cart, addItemToCart } = useCart();
-  console.log(cart);
   return (
     <ProductsContainer>
       {props.products.map((product) => renderProducts(product, addItemToCart))}
