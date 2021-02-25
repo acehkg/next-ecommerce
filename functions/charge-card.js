@@ -1,24 +1,8 @@
-const fs = require('fs');
-const matter = require('gray-matter');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-
-const getProducts = () => {
-  const directory = `${process.cwd()}/content`;
-  const filenames = fs.readdirSync(directory);
-  const products = filenames.map((filename) => {
-    //read the file from the fs
-    const fileContent = fs.readFileSync(`${directory}/${filename}`).toString();
-    //pull out frontmatter
-    const { data } = matter(fileContent);
-    return data;
-  });
-  return products;
-};
+const products = require('./products.json');
 
 exports.handler = async (event, context) => {
   const { cart } = JSON.parse(event.body);
-
-  const products = getProducts();
 
   // construct new cart with id, qty from client and confirmed with data from server
   const cartWithProducts = cart.map(({ id, qty }) => {
